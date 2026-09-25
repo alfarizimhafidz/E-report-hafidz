@@ -27,11 +27,13 @@
 </head>
 
 <body>
-  <!-- navbar -->
-  <nav class="animate__animated animate__fadeInDown navbar navbar-expand-lg bg-primary-subtle py-4">
+
+  <!-- NAVBAR -->
+  <nav class="animate__animated animate__fadeInDown navbar navbar-expand-lg bg-primary-subtle py-4" id="mainNavbar">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-        <img src="assets/image/Logo.png" alt="Logo" width="30" class="d-inline-block align-text-top rounded" />
+        <img src="assets/image/Logo.png" alt="Logo" width="30"
+          class="d-inline-block align-text-top rounded logo-spin" />
         <span class="fw-bold text-primary-emphasis">IDN E-Report</span>
       </a>
       <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -39,300 +41,1171 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto gap-4 pt-4 pt-lg-0">
+        <ul class="navbar-nav ms-auto gap-4 pt-4 pt-lg-0 align-items-lg-center">
           <li class="nav-item">
-            <a class="nav-link text-primary" href="#hero">Home</a>
+            <a class="nav-link nav-link-fancy text-primary active" href="index.html#hero">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-primary" href="#about">About</a>
+            <a class="nav-link nav-link-fancy text-primary" href="index.html#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-primary" href="#services">Services</a>
+            <a class="nav-link nav-link-fancy text-primary" href="index.html#services">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-primary" href="#recent">Recent</a>
+            <a class="nav-link nav-link-fancy text-primary" href="index.html#recent">Recent</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-primary" href="#faq">FAQ</a>
+            <a class="nav-link nav-link-fancy text-primary" href="index.html#faq">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-fancy text-primary" href="panduan.html">Guide</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-primary btn-nav-cta" href="reports.html">
+              <i class="bi bi-send-fill me-1"></i> Lapor Sekarang
+            </a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
+  <style>
+    #mainNavbar {
+      position: sticky;
+      top: 0;
+      z-index: 1050;
+      transition: all 0.35s ease;
+    }
+
+    /* Efek saat di-scroll */
+    #mainNavbar.scrolled {
+      padding-top: 0.7rem !important;
+      padding-bottom: 0.7rem !important;
+      background-color: rgba(255, 255, 255, 0.85) !important;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo-spin {
+      transition: transform 0.5s ease;
+    }
+
+    .navbar-brand:hover .logo-spin {
+      transform: rotate(15deg) scale(1.1);
+    }
+
+    /* Link dengan underline animasi */
+    .nav-link-fancy {
+      position: relative;
+      font-weight: 500;
+      padding-bottom: 4px !important;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link-fancy::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -2px;
+      width: 0%;
+      height: 2.5px;
+      background: linear-gradient(90deg, #6c90c0);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link-fancy:hover::after,
+    .nav-link-fancy.active::after {
+      width: 100%;
+    }
+
+    .nav-link-fancy.active {
+      font-weight: 700;
+    }
+
+    .nav-link-fancy:hover {
+      color: #0d6efd !important;
+    }
+
+    /* CTA button di navbar */
+    .btn-nav-cta {
+      border-radius: 50px;
+      padding: 8px 22px;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(13, 110, 253, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .btn-nav-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(13, 110, 253, 0.5);
+    }
+
+    /* Toggler animasi */
+    .navbar-toggler {
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-toggler:hover {
+      transform: scale(1.1);
+    }
+
+    /* Mobile collapse transition */
+    .navbar-collapse {
+      transition: all 0.4s ease;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const navbar = document.getElementById("mainNavbar");
+      const navLinks = document.querySelectorAll(".nav-link-fancy");
+
+      // Efek navbar saat scroll
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Set active link berdasarkan klik
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.forEach((l) => l.classList.remove("active"));
+          link.classList.add("active");
+        });
+      });
+
+      // Auto-close mobile menu setelah klik link
+      const navbarCollapse = document.getElementById("navbarNav");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (navbarCollapse.classList.contains("show")) {
+            const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navbarCollapse);
+            bsCollapse.hide();
+          }
+        });
+      });
+
+      // Active link otomatis berdasarkan scroll position (untuk single page sections)
+      const sections = document.querySelectorAll("section[id]");
+      if (sections.length > 0) {
+        window.addEventListener("scroll", () => {
+          let current = "";
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop - 100;
+            if (window.scrollY >= sectionTop) {
+              current = section.getAttribute("id");
+            }
+          });
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href").includes(`#${current}`) && current !== "") {
+              link.classList.add("active");
+            }
+          });
+        });
+      }
+    });
+  </script>
+
   <!-- HERO Section -->
-  <section id="hero">
-    <div class="container">
+  <section id="hero" class="hero-section">
+    <!-- Decorative floating shapes -->
+    <div class="hero-shape shape-1"></div>
+    <div class="hero-shape shape-2"></div>
+    <div class="hero-shape shape-3"></div>
+
+    <div class="container position-relative">
       <div
         class="hero row align-items-center flex-nowrap flex-column flex-lg-row text-center text-lg-start overflow-hidden">
         <div class="col animate__animated animate__fadeInLeft animate__delay-1s">
-          <h1 class="fw-bold">
-            Selamat Datang di <br /><span class="text-primary">
-              Aplikasi IDN E-Report 2026</span>
-            From pengaduan
+          <span class="badge-hero mb-3 d-inline-block">
+
+          </span>
+
+          <h1 class="fw-bold hero-title">
+            Selamat Datang di <br />
+            <span class="text-gradient">Aplikasi IDN E-Report 2026</span>
           </h1>
-          <p class="lh-lg">
+
+          <p class="lh-lg hero-desc">
             Sampaikan keluhan dan laporanmu dengan mudah, cepat, dan aman
             melalui platform kami. Setiap laporan akan kami proses dan
             tindak lanjuti demi lingkungan kampus yang lebih baik.
           </p>
-          <div class="mt-5">
-            <a class="btn btn-primary" href="">About Us</a>
-            <a class="btn btn-outline-primary" href="reports.html">Let's Start</a>
+
+          <div class="mt-5 d-flex gap-3 justify-content-center justify-content-lg-start flex-wrap">
+            <a class="btn btn-primary btn-hero-glow" href="about.html">
+              <i class="bi bi-info-circle me-2"></i>About Us
+            </a>
+            <a class="btn btn-outline-primary btn-hero-outline" href="reports.html">
+              <span>Let's Start</span>
+              <i class="bi bi-arrow-right ms-2 arrow-icon"></i>
+            </a>
+          </div>
+
+          <!-- Mini stats -->
+          <div class="hero-stats mt-5 d-flex gap-4 justify-content-center justify-content-lg-start">
+            <div class="stat-item">
+              <h3 class="counter" data-target="1200">0</h3>
+              <p>Laporan Diproses</p>
+            </div>
+            <div class="stat-item">
+              <h3 class="counter" data-target="98">0</h3>
+              <p>% Kepuasan</p>
+            </div>
+            <div class="stat-item">
+              <h3 class="counter" data-target="24">0</h3>
+              <p>Jam Respon</p>
+            </div>
           </div>
         </div>
+
         <div
           class="col d-flex justify-content-center justify-content-lg-end animate__animated animate__fadeInRight animate__delay-2s">
-          <img src="./assets/image/HERO.png" alt="" />
+          <img src="./assets/image/HERO.png" alt="Ilustrasi Pengaduan" class="hero-img" />
         </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="scroll-indicator">
+        <span></span>
       </div>
     </div>
   </section>
 
+  <style>
+    .hero-section {
+      position: relative;
+      overflow: hidden;
+      padding: 60px 0;
+    }
+
+    .text-gradient {
+      background: linear-gradient(90deg, #0d6efd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .badge-hero {
+      background: rgba(13, 110, 253, 0.1);
+      color: #0d6efd;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      animation: pulseBadge 2s infinite;
+    }
+
+    @keyframes pulseBadge {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.25);
+      }
+
+      50% {
+        box-shadow: 0 0 0 8px rgba(13, 110, 253, 0);
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+    }
+
+    .hero-desc {
+      color: #6c757d;
+      max-width: 520px;
+    }
+
+    .btn-hero-glow {
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(13, 110, 253, 0.35);
+    }
+
+    .btn-hero-glow:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(13, 110, 253, 0.5);
+    }
+
+    .btn-hero-outline {
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .btn-hero-outline:hover .arrow-icon {
+      transform: translateX(5px);
+    }
+
+    .arrow-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .hero-stats .stat-item h3 {
+      font-weight: 700;
+      color: #0d6efd;
+      margin-bottom: 0;
+    }
+
+    .hero-stats .stat-item p {
+      font-size: 0.85rem;
+      color: #6c757d;
+      margin: 0;
+    }
+
+    .hero-img {
+      max-width: 100%;
+      animation: floatImg 4s ease-in-out infinite;
+      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
+    }
+
+    @keyframes floatImg {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-18px);
+      }
+    }
+
+    .hero-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.4;
+      z-index: 0;
+      animation: floatShape 8s ease-in-out infinite;
+    }
+
+    .shape-1 {
+      width: 200px;
+      height: 200px;
+      background: #d3e1f5;
+      top: -50px;
+      left: -50px;
+    }
+
+    .shape-2 {
+      width: 150px;
+      height: 150px;
+      background: #f6f1ff;
+      bottom: -30px;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    .shape-3 {
+      width: 100px;
+      height: 100px;
+      background: #e7edeb;
+      top: 40%;
+      right: -30px;
+      animation-delay: 4s;
+    }
+
+    @keyframes floatShape {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(20px, -20px) scale(1.1);
+      }
+    }
+
+    .scroll-indicator {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .scroll-indicator span {
+      width: 24px;
+      height: 40px;
+      border: 2px solid #0d6efd;
+      border-radius: 20px;
+      position: relative;
+      display: block;
+    }
+
+    .scroll-indicator span::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      width: 4px;
+      height: 8px;
+      background: #0d6efd;
+      border-radius: 2px;
+      transform: translateX(-50%);
+      animation: scrollDot 1.5s infinite;
+    }
+
+    @keyframes scrollDot {
+      0% {
+        top: 6px;
+        opacity: 1;
+      }
+
+      100% {
+        top: 20px;
+        opacity: 0;
+      }
+    }
+  </style>
+
+  <script>
+    // Counter animation on scroll into view
+    document.addEventListener("DOMContentLoaded", () => {
+      const counters = document.querySelectorAll(".counter");
+      let started = false;
+
+      const runCounters = () => {
+        counters.forEach((counter) => {
+          const target = +counter.getAttribute("data-target");
+          let count = 0;
+          const step = Math.max(1, target / 60);
+          const update = () => {
+            count += step;
+            if (count < target) {
+              counter.innerText = Math.ceil(count);
+              requestAnimationFrame(update);
+            } else {
+              counter.innerText = target;
+            }
+          };
+          update();
+        });
+      };
+
+      const hero = document.getElementById("hero");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !started) {
+            started = true;
+            runCounters();
+          }
+        });
+      });
+      if (hero) observer.observe(hero);
+    });
+  </script>
+
   <!-- ABOUT Section -->
-  <section id="about">
+  <section id="about" class="py-5">
     <div class="container">
-      <div class="about row">
-        <div class="col text-center">
-          <h1 data-aos="fade-up" data-aos-duration="1000" class="fw-bold text-primary mb-4">Tentang Kami</h1>
-          <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" class="lh-lg mb-5">
+      <div class="row align-items-center g-5">
+
+        <!-- Image side -->
+        <div class="col-lg-6 order-lg-2" data-aos="fade-left" data-aos-duration="1000">
+          <div class="position-relative">
+            <div class="position-absolute top-0 start-0 w-100 h-100 bg-primary-subtle rounded-4"
+              style="transform: translate(-14px, 14px); z-index: 0;"></div>
+            <img src="./assets/image/ABOUT.png" alt="Tentang IDN E-Report"
+              class="img-fluid rounded-4 position-relative shadow-sm" style="z-index: 1;" />
+          </div>
+        </div>
+
+        <!-- Text side -->
+        <div class="col-lg-6 order-lg-1" data-aos="fade-right" data-aos-duration="1000">
+          <span class="badge bg-primary-subtle text-primary-emphasis px-3 py-2 rounded-pill mb-3 fw-semibold">
+            Tentang Kami
+          </span>
+          <h1 class="fw-bold mb-4">
+            Platform Pengaduan Digital untuk<span class="text-primary"> Civitas Akademika</span>
+          </h1>
+          <p class="lh-lg text-secondary mb-4">
             IDN E-Report adalah platform pengaduan digital yang dirancang
             untuk membantu civitas akademika menyampaikan berbagai keluhan,
             mulai dari masalah akademik hingga fasilitas kampus, secara
             anonim dan terpercaya.
           </p>
-          <img data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" src="./assets/image/ABOUT.png" alt="" />
+
+          <!-- Feature list -->
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-start gap-3 p-3 rounded-3 about-feature-item" data-aos="fade-up"
+              data-aos-delay="200">
+              <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-3"
+                style="width: 44px; height: 44px; min-width: 44px;">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Identitas Terjaga</h6>
+                <p class="text-secondary small mb-0">Setiap laporan bisa dikirim secara anonim dan tetap aman.</p>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3 p-3 rounded-3 about-feature-item" data-aos="fade-up"
+              data-aos-delay="300">
+              <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-3"
+                style="width: 44px; height: 44px; min-width: 44px;">
+                <i class="fa-solid fa-bolt"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Proses Cepat</h6>
+                <p class="text-secondary small mb-0">Laporan langsung diteruskan ke pihak yang berwenang untuk
+                  ditindaklanjuti.</p>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3 p-3 rounded-3 about-feature-item" data-aos="fade-up"
+              data-aos-delay="400">
+              <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-3"
+                style="width: 44px; height: 44px; min-width: 44px;">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Cakupan Luas</h6>
+                <p class="text-secondary small mb-0">Menampung keluhan akademik, fasilitas, dan berbagai masalah kampus
+                  lainnya.</p>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
+  <style>
+    .about-feature-item {
+      transition: background-color .2s ease, transform .2s ease;
+    }
+
+    .about-feature-item:hover {
+      background-color: var(--bs-tertiary-bg);
+      transform: translateX(4px);
+    }
+  </style>
+
   <!-- SERVICES SECTION -->
-  <section id="services">
+  <section id="services" class="py-5">
     <div class="container">
-      <div>
-        <h1 data-aos="fade-up" data-aos-duration="1000" class="fw-bold text-primary">Layanan Kami</h1>
-        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" class="lh-lg">
+      <div class="mb-5" data-aos="fade-up" data-aos-duration="1000">
+        <span class="badge bg-primary-subtle text-primary-emphasis px-3 py-2 rounded-pill mb-3 fw-semibold">
+          Layanan Kami
+        </span>
+        <h1 class="fw-bold text-primary">Layanan Kami</h1>
+        <p class="lh-lg text-secondary mb-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400"
+          style="max-width: 640px;">
           Kami menyediakan berbagai kanal pengaduan yang dapat kamu pilih
           sesuai dengan jenis masalah yang kamu hadapi selama berada di
           lingkungan kampus.
         </p>
       </div>
-      <div class="row p-4 p-lg-0 gap-3">
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600"
-          class="col bg-primary-subtle p-4 rounded ">
-          <i class="fa-solid fa-graduation-cap"></i>
-          <h4 class="fw-semibold">Pengaduan Akademik</h4>
-          <p class="lh-lg mt-3">Laporkan kendala perkuliahan, nilai, jadwal, atau masalah akademik lainnya kepada pihak
-            yang berwenang.</p>
+
+      <div class="row g-4">
+
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+          <div class="service-card h-100 p-4 rounded-4">
+            <div class="service-icon mb-4">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h4 class="fw-semibold">Pengaduan Akademik</h4>
+            <p class="lh-lg text-secondary mt-3 mb-0">Laporkan kendala perkuliahan, nilai, jadwal, atau masalah
+              akademik lainnya kepada pihak yang berwenang.</p>
+          </div>
         </div>
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700"
-          class="col bg-primary-subtle p-4 rounded ">
-          <i class="fa-solid fa-screwdriver-wrench"></i>
-          <h4 class="fw-semibold">Pengaduan Fasilitas</h4>
-          <p class="lh-lg mt-3">Sampaikan keluhan seputar kerusakan atau kekurangan fasilitas kampus agar segera
-            ditindaklanjuti.</p>
+
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700">
+          <div class="service-card h-100 p-4 rounded-4">
+            <div class="service-icon mb-4">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+            </div>
+            <h4 class="fw-semibold">Pengaduan Fasilitas</h4>
+            <p class="lh-lg text-secondary mt-3 mb-0">Sampaikan keluhan seputar kerusakan atau kekurangan fasilitas
+              kampus agar segera ditindaklanjuti.</p>
+          </div>
         </div>
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="800"
-          class="col bg-primary-subtle p-4 rounded ">
-          <i class="fa-solid fa-user-secret"></i>
-          <h4 class="fw-semibold">Pengaduan Anonymous</h4>
-          <p class="lh-lg mt-3">Laporkan masalah tanpa khawatir identitas terungkap, identitasmu akan kami jaga
-            kerahasiaannya.</p>
+
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="800">
+          <div class="service-card h-100 p-4 rounded-4">
+            <div class="service-icon mb-4">
+              <i class="fa-solid fa-user-secret"></i>
+            </div>
+            <h4 class="fw-semibold">Pengaduan Anonymous</h4>
+            <p class="lh-lg text-secondary mt-3 mb-0">Laporkan masalah tanpa khawatir identitas terungkap, identitasmu
+              akan kami jaga kerahasiaannya.</p>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
+  <style>
+    .service-card {
+      background-color: var(--bs-tertiary-bg);
+      border: 1px solid var(--bs-border-color-translucent);
+      transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      background-color: var(--bs-body-bg);
+      box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, .08);
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      background-color: var(--bs-primary-bg-subtle);
+      color: var(--bs-primary);
+      transition: background-color .25s ease, color .25s ease;
+    }
+
+    .service-card:hover .service-icon {
+      background-color: var(--bs-primary);
+      color: #fff;
+    }
+  </style>
+
   <!-- RECENT Section -->
-  <section id="recent">
+  <section id="recent" class="py-5">
     <div class="container">
-      <div class="text-end mb-5">
-        <h1 data-aos="fade-up" data-aos-duration="1000" class="fw-bold text-primary">Laporan Terbaru</h1>
-        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" class="lh-lg">
+      <div class="text-end mb-5" data-aos="fade-up" data-aos-duration="1000">
+        <span class="badge bg-primary-subtle text-primary-emphasis px-3 py-2 rounded-pill mb-3 fw-semibold">
+          Laporan Terbaru
+        </span>
+        <h1 class="fw-bold text-primary">Laporan Terbaru</h1>
+        <p class="lh-lg text-secondary mb-0">
           Berikut adalah beberapa laporan terbaru yang telah masuk dan
           sedang ditindaklanjuti oleh tim kami.
         </p>
       </div>
+
       <div class="row mb-4">
+
         <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="800" class="col-12 col-md-6 col-lg-4 mb-4">
-          <div class="card">
-            <p style="background-color: rgba(0, 0, 0, 0.4);" class="position-absolute text-white px-3 py-2">Akademik</p>
-            <img src="./assets/image/kelas kotor.webp" class="card-img-top" alt="...">
-            <div class="card-body">
+          <div class="card recent-card h-100 border-0 shadow-sm">
+            <div class="recent-card-img-wrap">
+              <img src="./assets/image/kelas kotor.webp" class="card-img-top" alt="Laporan Kelas Kotor">
+              <span class="badge bg-primary rounded-pill recent-category-badge">Akademik</span>
+            </div>
+            <div class="card-body d-flex flex-column">
               <h5 class="card-title fw-semibold">Laporan Kelas Kotor</h5>
-              <p class="mb-4">By: <a class="text-decoration-none" href="">Hafidz alfarizi</a> 2 day ago.</p>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s
-                content.</p>
-              <a href="detail-reports.html" class="btn btn-primary">Selengkapnya</a>
+              <div class="d-flex align-items-center gap-3 text-secondary small mb-3">
+                <span><i class="fa-regular fa-user me-1"></i><a class="text-decoration-none text-secondary"
+                    href="">Hafidz alfarizi</a></span>
+                <span><i class="fa-regular fa-clock me-1"></i>2 hari lalu</span>
+              </div>
+              <p class="card-text text-secondary flex-grow-1">Some quick example text to build on the card title and
+                make up the bulk of the card's content.</p>
+              <a href="detail-reports.html" class="btn btn-primary recent-btn mt-2 align-self-start">
+                Selengkapnya <i class="fa-solid fa-arrow-right ms-1 recent-btn-arrow"></i>
+              </a>
             </div>
           </div>
         </div>
+
         <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700" class="col-12 col-md-6 col-lg-4 mb-4">
-          <div class="card">
-            <p style="background-color: rgba(0, 0, 0, 0.4);" class="position-absolute text-white px-3 py-2">Anonymous
-            </p>
-            <img style="height: 250px; object-fit:cover;" src="./assets/image/MALING.png" class="card-img-top"
-              alt="...">
-            <div class="card-body">
+          <div class="card recent-card h-100 border-0 shadow-sm">
+            <div class="recent-card-img-wrap">
+              <img style="height: 250px; object-fit:cover;" src="./assets/image/MALING.png" class="card-img-top"
+                alt="Ada Maling di Kamar">
+              <span class="badge bg-dark rounded-pill recent-category-badge">Anonymous</span>
+            </div>
+            <div class="card-body d-flex flex-column">
               <h5 class="card-title fw-semibold">Ada Maling di Kamar</h5>
-              <p class="mb-4">By: <a class="text-decoration-none" href="">Anonymous</a> 2 day ago.</p>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s
-                content.</p>
-              <a href="detail-reports.html" class="btn btn-primary">Selengkapnya</a>
+              <div class="d-flex align-items-center gap-3 text-secondary small mb-3">
+                <span><i class="fa-regular fa-user me-1"></i><a class="text-decoration-none text-secondary"
+                    href="">Anonymous</a></span>
+                <span><i class="fa-regular fa-clock me-1"></i>2 hari lalu</span>
+              </div>
+              <p class="card-text text-secondary flex-grow-1">Some quick example text to build on the card title and
+                make up the bulk of the card's content.</p>
+              <a href="detail-reports.html" class="btn btn-primary recent-btn mt-2 align-self-start">
+                Selengkapnya <i class="fa-solid fa-arrow-right ms-1 recent-btn-arrow"></i>
+              </a>
             </div>
           </div>
         </div>
+
         <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" class="col-12 col-md-6 col-lg-4 mb-4">
-          <div class="card">
-            <p style="background-color: rgba(0, 0, 0, 0.4);" class="position-absolute text-white px-3 py-2">Akademik</p>
-            <img src="./assets/image/kelas kotor.webp" class="card-img-top" alt="...">
-            <div class="card-body">
+          <div class="card recent-card h-100 border-0 shadow-sm">
+            <div class="recent-card-img-wrap">
+              <img src="./assets/image/kelas kotor.webp" class="card-img-top" alt="Laporan Kelas Kotor">
+              <span class="badge bg-primary rounded-pill recent-category-badge">Akademik</span>
+            </div>
+            <div class="card-body d-flex flex-column">
               <h5 class="card-title fw-semibold">Laporan Kelas Kotor</h5>
-              <p class="mb-4">By: <a class="text-decoration-none" href="">Hafidz alfarizi</a> 2 day ago.</p>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s
-                content.</p>
-              <a href="detail-reports.html" class="btn btn-primary">Selengkapnya</a>
+              <div class="d-flex align-items-center gap-3 text-secondary small mb-3">
+                <span><i class="fa-regular fa-user me-1"></i><a class="text-decoration-none text-secondary"
+                    href="">Hafidz alfarizi</a></span>
+                <span><i class="fa-regular fa-clock me-1"></i>2 hari lalu</span>
+              </div>
+              <p class="card-text text-secondary flex-grow-1">Some quick example text to build on the card title and
+                make up the bulk of the card's content.</p>
+              <a href="detail-reports.html" class="btn btn-primary recent-btn mt-2 align-self-start">
+                Selengkapnya <i class="fa-solid fa-arrow-right ms-1 recent-btn-arrow"></i>
+              </a>
             </div>
           </div>
         </div>
+
       </div>
-      <a class="text-center d-block link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+
+      <a class="text-center d-block link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover fw-semibold"
         href="reports.html">
-        Lebih Banyak<i class="fa-solid fa-arrow-right"></i>
+        Lebih Banyak <i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>
   </section>
 
+  <style>
+    .recent-card {
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .recent-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1) !important;
+    }
+
+    .recent-card-img-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .recent-card-img-wrap img {
+      transition: transform .4s ease;
+    }
+
+    .recent-card:hover .recent-card-img-wrap img {
+      transform: scale(1.06);
+    }
+
+    .recent-category-badge {
+      position: absolute;
+      top: .9rem;
+      left: .9rem;
+      padding: .4rem .8rem;
+      font-size: .75rem;
+      font-weight: 600;
+    }
+
+    .recent-btn-arrow {
+      display: inline-block;
+      transition: transform .2s ease;
+    }
+
+    .recent-btn:hover .recent-btn-arrow {
+      transform: translateX(4px);
+    }
+  </style>
+
   <!-- FAQ Section -->
-  <section id="faq">
+  <section id="faq" class="faq-section py-5">
     <div class="container">
       <div class="row">
         <h1 data-aos="fade-up" data-aos-duration="1000" class="fw-bold text-primary text-center">FAQ</h1>
-        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" class="text-center">Temukan jawaban atas
-          pertanyaan yang paling sering diajukan seputar layanan pengaduan di IDN E-Report.</p>
+        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" class="text-center">
+          Temukan jawaban atas pertanyaan yang paling sering diajukan seputar layanan pengaduan di IDN E-Report.
+        </p>
       </div>
-      <div class="accordion mt-4" id="acordionExample">
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" class="row row-cols-1 row-cols-md-2 g-3">
-          <div class="col">
-            <div class="accordion-item">
+
+      <!-- Search bar -->
+      <div class="d-flex justify-content-center mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+        <div class="faq-search-box">
+          <i class="bi bi-search"></i>
+          <input type="text" id="faqSearch" placeholder="Cari pertanyaan..." />
+        </div>
+      </div>
+
+      <div class="accordion mt-4" id="accordionExample">
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" class="row row-cols-1 row-cols-md-2 g-3"
+          id="faqGrid">
+
+          <div class="col faq-item">
+            <div class="accordion-item faq-card">
               <h2 class="accordion-header">
-                <button class="accordion-button bg-primary text-white" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
-                  Apakah Bisa Melapor Masalah Keluarga?
+                <button class="accordion-button faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq1"
+                  aria-expanded="false" aria-controls="faq1">
+                  <span class="faq-number">01</span>
+                  <span class="faq-question">Apakah Bisa Melapor Masalah Keluarga?</span>
+                  <i class="bi bi-plus-lg faq-icon"></i>
                 </button>
               </h2>
               <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  <strong>This is the first item’s accordion body.</strong> It is shown by default, until the collapse
-                  plugin adds the appropriate classes that we use to style each element. These classes control the
-                  overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this
-                  with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML
-                  can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <strong>Bisa aja tapi..</strong> Secara umum, e-report yang berfokus pada aspek akademik seperti nilai
+                  dan absensi tidak dirancang untuk menampung laporan masalah keluarga. Jika siswa atau orang tua ingin
+                  melaporkan masalah keluarga yang berdampak pada kondisi siswa di sekolah, sebaiknya disampaikan
+                  langsung melalui guru BK (Bimbingan Konseling) atau wali kelas, baik secara tatap muka maupun melalui
+                  saluran komunikasi resmi sekolah yang bersifat privat, bukan melalui sistem e-report akademik biasa.
+                  <div class="faq-feedback">
+                    <span>Apakah jawaban ini membantu?</span>
+                    <button class="fb-btn" data-value="yes"><i class="bi bi-hand-thumbs-up"></i> Ya</button>
+                    <button class="fb-btn" data-value="no"><i class="bi bi-hand-thumbs-down"></i> Tidak</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="accordion-item">
+
+          <div class="col faq-item">
+            <div class="accordion-item faq-card">
               <h2 class="accordion-header">
-                <button class="accordion-button bg-primary text-white" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#faq2" aria-expanded="true" aria-controls="faq2">
-                  Berapa Lama Sampai Laporan Di Respon?
+                <button class="accordion-button faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq2"
+                  aria-expanded="false" aria-controls="faq2">
+                  <span class="faq-number">02</span>
+                  <span class="faq-question">Berapa Lama Sampai Laporan Di Respon?</span>
+                  <i class="bi bi-plus-lg faq-icon"></i>
                 </button>
               </h2>
               <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  <strong>This is the first item’s accordion body.</strong> It is shown by default, until the collapse
-                  plugin adds the appropriate classes that we use to style each element. These classes control the
-                  overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this
-                  with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML
-                  can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <strong>Waktu respon</strong> terhadap laporan biasanya bervariasi, tergantung kebijakan masing-masing
+                  sekolah. Umumnya, laporan yang bersifat akademik seperti nilai atau kehadiran bisa direspon dalam
+                  waktu 1-3 hari kerja, sedangkan laporan yang lebih kompleks atau memerlukan koordinasi dengan pihak
+                  lain mungkin membutuhkan waktu lebih lama.
+                  <div class="faq-feedback">
+                    <span>Apakah jawaban ini membantu?</span>
+                    <button class="fb-btn" data-value="yes"><i class="bi bi-hand-thumbs-up"></i> Ya</button>
+                    <button class="fb-btn" data-value="no"><i class="bi bi-hand-thumbs-down"></i> Tidak</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="accordion-item">
+
+          <div class="col faq-item">
+            <div class="accordion-item faq-card">
               <h2 class="accordion-header">
-                <button class="accordion-button bg-primary text-white" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#faq3" aria-expanded="true" aria-controls="faq3">
-                  Bagaimana Saya Bisa Melapor Anonymous?
+                <button class="accordion-button faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq3"
+                  aria-expanded="false" aria-controls="faq3">
+                  <span class="faq-number">03</span>
+                  <span class="faq-question">Bagaimana Saya Bisa Melapor Anonymous?</span>
+                  <i class="bi bi-plus-lg faq-icon"></i>
                 </button>
               </h2>
               <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  <strong>This is the first item’s accordion body.</strong> It is shown by default, until the collapse
-                  plugin adds the appropriate classes that we use to style each element. These classes control the
-                  overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this
-                  with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML
-                  can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <strong>Sekolah akan menjamin</strong> kerahasiaan pelapor, terutama untuk laporan yang sensitif.
+                  Jadi meskipun kamu melapor secara anonim, biasanya pihak sekolah (guru BK/wali kelas) tetap bisa
+                  menindaklanjuti masalah tersebut tanpa membocorkan identitas pelapor ke pihak lain.
+                  <div class="faq-feedback">
+                    <span>Apakah jawaban ini membantu?</span>
+                    <button class="fb-btn" data-value="yes"><i class="bi bi-hand-thumbs-up"></i> Ya</button>
+                    <button class="fb-btn" data-value="no"><i class="bi bi-hand-thumbs-down"></i> Tidak</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="accordion-item">
+
+          <div class="col faq-item">
+            <div class="accordion-item faq-card">
               <h2 class="accordion-header">
-                <button class="accordion-button bg-primary text-white" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#faq4" aria-expanded="true" aria-controls="faq4">
-                  Apakah Laporan Uang Hilang Akan Di Ganti?
+                <button class="accordion-button faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq4"
+                  aria-expanded="false" aria-controls="faq4">
+                  <span class="faq-number">04</span>
+                  <span class="faq-question">Apakah Laporan Uang Hilang Akan Di Ganti?</span>
+                  <i class="bi bi-plus-lg faq-icon"></i>
                 </button>
               </h2>
               <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  <strong>This is the first item’s accordion body.</strong> It is shown by default, until the collapse
-                  plugin adds the appropriate classes that we use to style each element. These classes control the
-                  overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this
-                  with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML
-                  can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <strong>Untuk memastikan</strong> apakah laporan uang hilang bisa diganti, sebaiknya laporkan langsung
+                  ke guru BK, wali kelas, atau bagian administrasi sekolah dengan detail kejadian yang jelas. Pihak
+                  sekolah biasanya akan menjelaskan kebijakan yang berlaku, apakah ada kompensasi atau hanya sebatas
+                  bantuan investigasi.
+                  <div class="faq-feedback">
+                    <span>Apakah jawaban ini membantu?</span>
+                    <button class="fb-btn" data-value="yes"><i class="bi bi-hand-thumbs-up"></i> Ya</button>
+                    <button class="fb-btn" data-value="no"><i class="bi bi-hand-thumbs-down"></i> Tidak</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="accordion-item">
+
+          <div class="col faq-item">
+            <div class="accordion-item faq-card">
               <h2 class="accordion-header">
-                <button class="accordion-button bg-primary text-white" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#faq5" aria-expanded="true" aria-controls="faq5">
-                  Bagaimana Saya Ingin Merubah Laporan?
+                <button class="accordion-button faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq5"
+                  aria-expanded="false" aria-controls="faq5">
+                  <span class="faq-number">05</span>
+                  <span class="faq-question">Bagaimana Saya Ingin Merubah Laporan?</span>
+                  <i class="bi bi-plus-lg faq-icon"></i>
                 </button>
               </h2>
               <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  <strong>This is the first item’s accordion body.</strong> It is shown by default, until the collapse
-                  plugin adds the appropriate classes that we use to style each element. These classes control the
-                  overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this
-                  with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML
-                  can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <strong>Caranya sebagai berikut:</strong> Untuk mengubah laporan di sistem e-report, biasanya kamu
+                  perlu masuk ke akun dengan hak akses yang sesuai (misalnya guru atau admin sekolah), lalu membuka menu
+                  edit pada data yang ingin diperbarui. Setelah perubahan disimpan, sistem biasanya akan otomatis
+                  memperbarui tampilan laporan tanpa perlu mencetak ulang secara manual.
+                  <div class="faq-feedback">
+                    <span>Apakah jawaban ini membantu?</span>
+                    <button class="fb-btn" data-value="yes"><i class="bi bi-hand-thumbs-up"></i> Ya</button>
+                    <button class="fb-btn" data-value="no"><i class="bi bi-hand-thumbs-down"></i> Tidak</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="accordion-item">
+
+          <div class="col faq-item">
+            <div class="accordion-item faq-card">
               <h2 class="accordion-header">
-                <button class="accordion-button bg-primary text-white" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#faq6" aria-expanded="true" aria-controls="faq6">
-                  Kenapa Harus Lapor Ke E-Report Dan Tidak Ke Orang Tua?
+                <button class="accordion-button faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq6"
+                  aria-expanded="false" aria-controls="faq6">
+                  <span class="faq-number">06</span>
+                  <span class="faq-question">Kenapa Harus Lapor Ke E-Report Dan Tidak Ke Orang Tua?</span>
+                  <i class="bi bi-plus-lg faq-icon"></i>
                 </button>
               </h2>
               <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  <strong>This is the first item’s accordion body.</strong> It is shown by default, until the collapse
-                  plugin adds the appropriate classes that we use to style each element. These classes control the
-                  overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this
-                  with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML
-                  can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <strong>Beberapa masalah,</strong> seperti bullying, konflik dengan teman, atau kesulitan akademik,
+                  terkadang lebih efektif ditangani langsung oleh pihak sekolah melalui E-Report karena mereka punya
+                  akses langsung ke situasi di lingkungan sekolah dan bisa mengambil tindakan cepat, seperti mediasi
+                  atau pengawasan. Orang tua mungkin tidak selalu bisa memantau atau menindak langsung kejadian yang
+                  terjadi di sekolah.
+                  <div class="faq-feedback">
+                    <span>Apakah jawaban ini membantu?</span>
+                    <button class="fb-btn" data-value="yes"><i class="bi bi-hand-thumbs-up"></i> Ya</button>
+                    <button class="fb-btn" data-value="no"><i class="bi bi-hand-thumbs-down"></i> Tidak</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
+
+        <!-- Empty state -->
+        <div id="faqEmpty" class="text-center py-5 d-none">
+          <i class="bi bi-question-circle display-1 text-muted"></i>
+          <p class="text-muted mt-2">Tidak ada pertanyaan yang cocok dengan pencarianmu.</p>
+        </div>
+      </div>
+
+      <!-- CTA tambahan -->
+      <div class="text-center mt-5" data-aos="fade-up" data-aos-duration="1000">
+        <p class="mb-2 text-muted">Masih ada pertanyaan lain?</p>
+        <a href="#" class="btn btn-outline-primary btn-lg rounded-pill px-4">
+          <i class="bi bi-chat-dots-fill me-2"></i>Hubungi Kami
+        </a>
       </div>
     </div>
   </section>
 
+  <style>
+    .faq-section {
+      background: #fff;
+    }
+
+    /* Search box */
+    .faq-search-box {
+      position: relative;
+      max-width: 380px;
+      width: 100%;
+    }
+
+    .faq-search-box i {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #adb5bd;
+    }
+
+    .faq-search-box input {
+      width: 100%;
+      padding: 12px 16px 12px 42px;
+      border-radius: 50px;
+      border: 1.5px solid #e0e0e0;
+      outline: none;
+      transition: 0.25s;
+    }
+
+    .faq-search-box input:focus {
+      border-color: #0d6efd;
+      box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.12);
+    }
+
+    /* Card wrapper */
+    .faq-item {
+      transition: opacity 0.3s ease;
+    }
+
+    .faq-card {
+      border: 1px solid #e9ecef;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent;
+    }
+
+    .faq-card:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+      transform: translateY(-3px);
+    }
+
+    .faq-card.active-faq {
+      border-left: 4px solid #0d6efd;
+      box-shadow: 0 8px 20px rgba(13, 110, 253, 0.12);
+    }
+
+    /* Button/header */
+    .faq-btn {
+      background: #fff !important;
+      color: #212529 !important;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+      box-shadow: none !important;
+    }
+
+    .faq-btn::after {
+      display: none !important;
+    }
+
+    .faq-number {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #0d6efd;
+      background: #e7f1ff;
+      padding: 4px 10px;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .faq-question {
+      flex: 1;
+      text-align: left;
+    }
+
+    .faq-icon {
+      font-size: 0.95rem;
+      color: #0d6efd;
+      transition: transform 0.35s ease;
+      flex-shrink: 0;
+    }
+
+    .faq-btn[aria-expanded="true"] .faq-icon {
+      transform: rotate(135deg);
+    }
+
+    .faq-btn[aria-expanded="true"] .faq-number {
+      background: #0d6efd;
+      color: #fff;
+    }
+
+    .accordion-body {
+      color: #6c757d;
+      border-top: 1px solid #f1f1f1;
+      line-height: 1.7;
+    }
+
+    /* Feedback buttons */
+    .faq-feedback {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed #e0e0e0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+    }
+
+    .faq-feedback span {
+      color: #adb5bd;
+    }
+
+    .fb-btn {
+      border: 1px solid #dee2e6;
+      background: #fff;
+      border-radius: 50px;
+      padding: 4px 12px;
+      font-size: 0.8rem;
+      color: #495057;
+      transition: all 0.25s ease;
+    }
+
+    .fb-btn:hover {
+      border-color: #0d6efd;
+      color: #0d6efd;
+    }
+
+    .fb-btn.selected {
+      background: #0d6efd;
+      color: #fff;
+      border-color: #0d6efd;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const searchInput = document.getElementById("faqSearch");
+      const faqItems = document.querySelectorAll(".faq-item");
+      const emptyState = document.getElementById("faqEmpty");
+      const accordionButtons = document.querySelectorAll(".faq-btn");
+
+      // Search filter
+      searchInput.addEventListener("input", () => {
+        const query = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        faqItems.forEach((item) => {
+          const question = item.querySelector(".faq-question").textContent.toLowerCase();
+          const body = item.querySelector(".accordion-body").textContent.toLowerCase();
+          const match = question.includes(query) || body.includes(query);
+          item.style.display = match ? "block" : "none";
+          if (match) visibleCount++;
+        });
+
+        emptyState.classList.toggle("d-none", visibleCount !== 0);
+      });
+
+      // Highlight active card
+      accordionButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const card = btn.closest(".faq-card");
+          setTimeout(() => {
+            document.querySelectorAll(".faq-card").forEach((c) => {
+              const isExpanded = c.querySelector(".faq-btn").getAttribute("aria-expanded") === "true";
+              c.classList.toggle("active-faq", isExpanded);
+            });
+          }, 50);
+        });
+      });
+
+      // Feedback buttons
+      document.querySelectorAll(".fb-btn").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const group = btn.parentElement.querySelectorAll(".fb-btn");
+          group.forEach((b) => b.classList.remove("selected"));
+          btn.classList.add("selected");
+        });
+      });
+    });
+  </script>
   <!-- Footer Section -->
   <footer class="bg-primary py-5">
     <div class="container">
@@ -342,17 +1215,19 @@
             <img class="rounded" src="./assets/image/Logo.png" width="30" alt="">
             <h3 class="mb-0 fw-bold">E-Report</h3>
           </div>
-          <p class="opacity-75 lh-lg mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-            reprehenderit unde, nisi placeat accusamus aspernatur!
+          <p class="opacity-75 lh-lg mb-0">As a parent, I really appreciate the e-report system at my child's school. I
+            no longer have to wait for the end of the semester to see how they're doing — I can check their grades,
+            attendance, and teacher comments online whenever I want.
           <p>
         </div>
         <div class="col-md-2 text-white d-flex flex-column gap-2">
           <h4 class="fw-bold">Menu</h4>
-          <a class="text-white text-decoration-none footer-link" href="#hero">Home</a>
-          <a class="text-white text-decoration-none footer-link" href="#about">About</a>
-          <a class="text-white text-decoration-none footer-link" href="#services">Services</a>
-          <a class="text-white text-decoration-none footer-link" href="#recent">Recent</a>
-          <a class="text-white text-decoration-none footer-link" href="#faq">FAQ</a>
+          <a class="text-white text-decoration-none footer-link" href="index.html#hero">Home</a>
+          <a class="text-white text-decoration-none footer-link" href="index.html#about">About</a>
+          <a class="text-white text-decoration-none footer-link" href="index.html#services">Services</a>
+          <a class="text-white text-decoration-none footer-link" href="index.html#recent">Recent</a>
+          <a class="text-white text-decoration-none footer-link" href="index.html#faq">FAQ</a>
+          <a class="text-white text-decoration-none footer-link" href="panduan.html">Guide</a>
         </div>
         <div class="col-md-4 d-flex flex-column gap-3">
           <h4 class="fw-bold text-white">Contact Us</h4>

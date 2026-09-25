@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | E-Report IDN</title>
+  <link rel="shortcut icon" href="assets/image/Logo.png" type="image/x-icon" />
+
+  <!-- cdn css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+
+  <!-- cdn animte css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <!-- cdn AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+  <!-- my css -->
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <!-- cdn font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
+    integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+    <style>
+    .step-number {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .step-card {
+      border: none;
+      border-radius: 16px;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, .08) !important;
+    }
+
+    .panduan-hero {
+      background: linear-gradient(135deg, var(--bs-primary) 0%, #4f8ff7 100%);
+      border-radius: 0 0 40px 40px;
+    }
+
+    .icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- navbar -->
+  <nav class="animate__animated animate__fadeInDown navbar navbar-expand-lg bg-primary-subtle py-4">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <img src="assets/image/Logo.png" alt="Logo" width="30" class="d-inline-block align-text-top rounded" />
+        <span class="fw-bold text-primary-emphasis">IDN E-Report</span>
+      </a>
+      <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto gap-4 pt-4 pt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="index.html#hero">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="index.html#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="index.html#services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="index.html#recent">Recent</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="index.html#faq">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="panduan.html">Guide</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- HERO PANDUAN -->
+  <section class="panduan-hero text-white py-5 mb-5">
+    <div class="container py-4 text-center" data-aos="fade-up">
+      <span class="badge bg-white text-primary px-3 py-2 mb-3 rounded-pill">
+        <i class="fa-solid fa-book me-1"></i> Panduan Pengguna
+      </span>
+      <h1 class="fw-bold mb-3">Cara Menggunakan E-Report</h1>
+      <p class="opacity-90 mb-0 mx-auto" style="max-width: 600px;">
+        Ikuti langkah-langkah sederhana di bawah ini untuk mulai membuat, mengirim, dan melacak report kamu.
+      </p>
+    </div>
+  </section>
+
+  <!-- STEP CARDS -->
+  <section class="container mb-5">
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+        <div class="card step-card shadow-sm h-100 p-2">
+          <div class="card-body">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="step-number bg-primary text-white">1</div>
+              <div class="icon-circle bg-primary-subtle text-primary">
+                <i class="fa-solid fa-user-plus"></i>
+              </div>
+            </div>
+            <h5 class="fw-bold">Mendaftar Akun</h5>
+            <p class="text-secondary mb-0">Buat akun baru dengan mengisi data diri dan email aktif kamu.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="card step-card shadow-sm h-100 p-2">
+          <div class="card-body">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="step-number bg-primary text-white">2</div>
+              <div class="icon-circle bg-primary-subtle text-primary">
+                <i class="fa-solid fa-right-to-bracket"></i>
+              </div>
+            </div>
+            <h5 class="fw-bold">Login</h5>
+            <p class="text-secondary mb-0">Masuk menggunakan email dan password yang sudah terdaftar.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+        <div class="card step-card shadow-sm h-100 p-2">
+          <div class="card-body">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="step-number bg-primary text-white">3</div>
+              <div class="icon-circle bg-primary-subtle text-primary">
+                <i class="fa-solid fa-file-circle-plus"></i>
+              </div>
+            </div>
+            <h5 class="fw-bold">Buat Report</h5>
+            <p class="text-secondary mb-0">Isi form report sesuai kejadian atau kebutuhan yang ingin dilaporkan.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+        <div class="card step-card shadow-sm h-100 p-2">
+          <div class="card-body">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="step-number bg-primary text-white">4</div>
+              <div class="icon-circle bg-primary-subtle text-primary">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+              </div>
+            </div>
+            <h5 class="fw-bold">Lacak Status</h5>
+            <p class="text-secondary mb-0">Pantau progres report kamu langsung dari dashboard.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DETAIL PANDUAN (ACCORDION) -->
+  <section class="bg-primary-subtle bg-opacity-25 py-5 mb-5">
+    <div class="container" data-aos="fade-up">
+      <h3 class="fw-bold mb-4">Detail Setiap Langkah</h3>
+
+      <div class="accordion" id="panduanAccordion">
+        <div class="accordion-item rounded-3 mb-2 overflow-hidden">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#step1">
+              <i class="fa-solid fa-user-plus text-primary me-2"></i> Langkah 1: Cara Mendaftar
+            </button>
+          </h2>
+          <div id="step1" class="accordion-collapse collapse show" data-bs-parent="#panduanAccordion">
+            <div class="accordion-body">
+              Klik tombol <strong>Daftar</strong> di halaman utama, lalu isi nama, email, dan password.
+              Klik <strong>Submit</strong> dan cek email kamu untuk verifikasi akun.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item rounded-3 mb-2 overflow-hidden">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#step2">
+              <i class="fa-solid fa-right-to-bracket text-primary me-2"></i> Langkah 2: Cara Login
+            </button>
+          </h2>
+          <div id="step2" class="accordion-collapse collapse" data-bs-parent="#panduanAccordion">
+            <div class="accordion-body">
+              Masukkan email dan password yang sudah terdaftar pada halaman login, lalu klik <strong>Masuk</strong>.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item rounded-3 mb-2 overflow-hidden">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#step3">
+              <i class="fa-solid fa-file-circle-plus text-primary me-2"></i> Langkah 3: Cara Membuat Report
+            </button>
+          </h2>
+          <div id="step3" class="accordion-collapse collapse" data-bs-parent="#panduanAccordion">
+            <div class="accordion-body">
+              Klik menu <strong>Buat Report</strong>, isi judul, kategori, dan deskripsi kejadian, lampirkan bukti bila
+              perlu, lalu klik <strong>Kirim</strong>.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item rounded-3 mb-2 overflow-hidden">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#step4">
+              <i class="fa-solid fa-magnifying-glass-chart text-primary me-2"></i> Langkah 4: Cara Melacak Status
+            </button>
+          </h2>
+          <div id="step4" class="accordion-collapse collapse" data-bs-parent="#panduanAccordion">
+            <div class="accordion-body">
+              Buka menu <strong>Dashboard</strong> untuk melihat status terbaru dari setiap report yang sudah kamu
+              kirim: <em>Diproses</em>, <em>Ditinjau</em>, atau <em>Selesai</em>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANTUAN -->
+  <section class="container mb-5">
+    <div class="row bg-primary rounded-4 p-4 p-md-5 text-white align-items-center" data-aos="zoom-in">
+      <div class="col-md-8 mb-3 mb-md-0">
+        <h4 class="fw-bold mb-2"><i class="fa-solid fa-circle-question me-2"></i>Masih ada yang membingungkan?</h4>
+        <p class="opacity-90 mb-0">Tim kami siap membantu kalau kamu mengalami kendala saat menggunakan E-Report.</p>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <a href="https://wa.me/81398800537" target="_blank" class="btn btn-light text-primary fw-semibold px-4">
+          <i class="fa-brands fa-whatsapp me-1"></i> Hubungi Kami
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Footer Section -->
+  <footer class="bg-primary py-5">
+    <div class="container">
+      <div class="row justify-content-between row-gap-4 row-gap-md-0">
+        <div class="col-md-4 text-white">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <img class="rounded" src="./assets/image/Logo.png" width="30" alt="">
+            <h3 class="mb-0 fw-bold">E-Report</h3>
+          </div>
+          <p class="opacity-75 lh-lg mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
+            reprehenderit unde, nisi placeat accusamus aspernatur!
+          <p>
+        </div>
+        <div class="col-md-2 text-white d-flex flex-column gap-2">
+          <h4 class="fw-bold">Menu</h4>
+          <a class="text-white text-decoration-none footer-link" href="index.html#hero">Home</a>
+          <a class="text-white text-decoration-none footer-link" href="index.html#about">About</a>
+          <a class="text-white text-decoration-none footer-link" href="index.html#services">Services</a>
+          <a class="text-white text-decoration-none footer-link" href="index.html#recent">Recent</a>
+          <a class="text-white text-decoration-none footer-link" href="index.html#faq">FAQ</a>
+          <a class="text-white text-decoration-none footer-link" href="panduan.html">Guide</a>
+        </div>
+        <div class="col-md-4 d-flex flex-column gap-3">
+          <h4 class="fw-bold text-white">Contact Us</h4>
+          <a target="_blank" class="text-white text-decoration-none footer-link d-flex align-items-center gap-2"
+            href="mailto:idnreport@idn.sch.id">
+            <i class="fa-solid fa-envelope"></i>
+            idnreport@idn.sch.id
+          </a>
+          <a target="_blank" class="text-white text-decoration-none footer-link d-flex align-items-center gap-2"
+            href="https://wa.me/629779367834">
+            <i class="fa-brands fa-whatsapp"></i>
+            +62 699 403 289
+          </a>
+          <a target="_blank" class="text-white text-decoration-none footer-link d-flex align-items-center gap-2"
+            href="https://maps.app.goo.gl/MyD3k3ZhKRLfc5187">
+            <i class="fa-solid fa-location-dot"></i>
+            Jl. Dayeuh, Sukanegara, Kec. Jonggol
+          </a>
+        </div>
+      </div>
+
+      <div class="copyright text-white text-center">
+        <p>&copy; Copyright by <span class="fw-bold">RPL C Class</span> 2026, All right reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- js Bootsrap -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+    integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+    crossorigin="anonymous"></script>
+
+  <!-- js AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+  </script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+
+</html>
